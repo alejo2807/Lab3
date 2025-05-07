@@ -2,72 +2,77 @@
 #include <iostream>
 #include <ctime> //para usar la función time
 #include <cstdlib> //para usar la función rand y srand
+using namespace std;
 
-
-Tablero::Tablero(int filas, int columnas)
+Tablero::Tablero()
 {
-	this->filas = filas;
-	this->columnas = columnas;
-	
-}
-
-
-
-Tablero::~Tablero()
-{
-}
-
-
-
-
-void Tablero::rellenarTablero()
-{
-	//Una semilla es un número que se utiliza para inicializar un generador de números aleatorios.
-	//La función srand() se utiliza para establecer la semilla del generador de números aleatorios.
-	//La funcion srand() genera una secuencia de números pseudoaleatorios.
-	//Esto significa que cada vez que se ejecute el programa, se generarán diferentes secuencias de números "aleatorios".
-	//La función time(0) devuelve el tiempo actual en segundos desde el 1 de enero de 1970. Y este numero se lo pasamos como parametro  
-	//a srand() ya que al cambiar cada segundo, la semilla que iniciamos siempre cambia, lo cual hace tableros diferentes (secuencias diferentes)
-	srand(time(0)); 
-	int matrizTablero[filas][columnas]; //Declaramos la matriz de enteros con el tamaño de filas y columnas que le pasamos al constructor
-	
-	//Llenamos la matriz con números aleatorios entre 0 y 1. 
-	//Esto se realiza mediante el operador modulo, ya que al dividir un número entre 2, el residuo puede ser 0 o 1.
-	//Como se nos pide que la matriz sea de 0s y 1s, utilizamos este metodo para llenar la matriz, que representa el tablero.
-	for (int i = 0; i < filas; i++)
+	for(int i = 0; i < FILAS; i++)
 	{
-		for (int j = 0; j < columnas; j++)
+		for (int j = 0; j < COLUMNAS; j++)
 		{
-			matrizTablero[i][j] = rand() % 2; //Genera un número aleatorio que puede ser 0 o 1
+			matrizTablero[i][j] = 0; //Inicializamos la matriz en 0s, es decir que empieza con precipicios en todas partes
+		}
+	}
+}
+
+void Tablero::caminoPrincipal()
+{
+	for (int i=0; i<5; i++){ matrizTablero[i][0] = 1; } //Primera parte del camino en la columna cero. Va iterando de 0 a 4, con lo cual la mitad de la columna queda con 1s
+	for (int j=1; j<10; j++){ matrizTablero[4][j] = 1; } //Segunda parte del camino en la fila 4. Itera sobre la fila 4, de la columna 1 a la 9, con lo cual queda un camino recto de 1s
+	for (int i=4; i<10; i++){ matrizTablero[i][9] = 1; } //Tercera parte del camino en la última columna. Itera en la columa 9, cambiando los valores de la fila 4 a la 9, con lo cual queda un camino recto de 1s
+
+	// Quedaria algo asi (no importa los ceros en este momento, pues aqui solo hemos definido el camino principal):
+	// 1 0 0 0 0 0 0 0 0 0
+	// 1 0 0 0 0 0 0 0 0 0
+	// 1 0 0 0 0 0 0 0 0 0
+	// 1 0 0 0 0 0 0 0 0 0
+	// 1 1 1 1 1 1 1 1 1 1
+	// 0 0 0 0 0 0 0 0 0 1
+	// 0 0 0 0 0 0 0 0 0 1
+	// 0 0 0 0 0 0 0 0 0 1
+	// 0 0 0 0 0 0 0 0 0 1
+	// 0 0 0 0 0 0 0 0 0 1
+
+}
+
+void Tablero::rellenarTableroCompleto()
+{
+	
+	for (int i = 0; i < FILAS; i++)
+	{
+		for (int j = 0; j < COLUMNAS; j++)
+		{
+			//Modificamos celdas que no son parte del camino principal
+			if(matrizTablero[i][j] == 0)
+			{
+				//En esta linea, generamos un numero aleatorio que puede ser 0, o un numero muy grande
+				//Le sacamos el modulo 100 para que el residuo del numero aleatorio sea entre 0 y 99
+				//Si el residuo es menor a 70, entonces asignamos un 1 a la celda, si no, asignamos un 0
+				//Esto genera un 70% de probabilidad de que la celda sea un 1, y un 30% de que sea un 0
+				//De esta manera, hay un 70% de probabilidad de que la celda sea un camino, y un 30% de que sea un precipicio
+				if((rand() % 100) < 70)
+				{
+					matrizTablero[i][j] = 1;
+				} 
+				else matrizTablero[i][j] = 0;
+			}
 		}
 	}
 	
-	std::cout << "Matriz 1:" << std::endl;
-	//Imprimimos la matriz en pantalla
-	for (int i = 0; i < filas; i++)
-	{
-		for (int j = 0; j < columnas; j++)
-		{
-			std::cout << matrizTablero[i][j] << " "; //Imprimimos el valor de la matriz en la posición i,j
-		}
-		std::cout << std::endl; //Salto de línea para la siguiente fila
-	}	
+	matrizTablero[9][9] = 1; //Esta linea siempre asegura que la celda de la fila 9 y columna 9 sea la salida al final del laberinto
+	//No es necesario, pues en la funcion caminoPrincipal(), ya esta por defecto esa posicion con un 1, pero es una buena práctica por si hay modificaciones en el futuro
 }
 
 void Tablero::mostrarTablero()
 {
-	int matrizTablero[filas][columnas]; //Declaramos la matriz de enteros con el tamaño de filas y columnas que le pasamos al constructor
-	rellenarTablero(); //Llamamos a la función que llena la matriz con números aleatorios entre 0 y 1
-	
-	std::cout << "Matriz 2:" << std::endl;
-//Imprimimos la matriz en pantalla
-	for (int i = 0; i < filas; i++)
+	cout << "Laberinto:" << endl;
+	//Imprimimos la matriz en pantalla
+	for (int i = 0; i < FILAS; i++)
 	{
-		for (int j = 0; j < columnas; j++)
+		for (int j = 0; j < COLUMNAS; j++)
 		{
-			std::cout << matrizTablero[i][j] << " "; //Imprimimos el valor de la matriz en la posición i,j
+			cout << matrizTablero[i][j] << " "; //Imprimimos el valor de la matriz en la posición i,j
 		}
-		std::cout << std::endl; //Salto de línea para la siguiente fila
-	}
-	
+		cout << endl; //Salto de línea para la siguiente fila
+	}	
 }

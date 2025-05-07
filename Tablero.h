@@ -4,15 +4,16 @@
 class Tablero {
 	
 	private:
-		int filas;
-		int columnas;
-	
+		static const int FILAS = 10; //usamos static const para almacenar el tamaño de las filas y columnas
+		static const int COLUMNAS = 10; //Aunque en este caso sea 10, si luego se quiere cambiar a 20 solo basta con cambiarlo en estas 2 lineas
+		//Podriamos dejar la matriz definida asi: int matrizTablero[10][10], pero esto generaria problemas si lo quisieras cambiar luego.
+		//por lo tanto, la definimos asi:
+		int matrizTablero[FILAS][COLUMNAS]; //Declaramos la matriz con las ctes de arriba
+
 	public:
-	
-		Tablero(int filas, int columnas);
-		~Tablero();
-		
-		void rellenarTablero();
+		Tablero();
+		void caminoPrincipal();
+		void rellenarTableroCompleto();
 		void mostrarTablero();
 	
 };
