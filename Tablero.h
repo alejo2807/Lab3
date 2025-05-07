@@ -10,11 +10,17 @@ class Tablero {
 		//por lo tanto, la definimos asi:
 		int matrizTablero[FILAS][COLUMNAS]; //Declaramos la matriz con las ctes de arriba
 
+
 	public:
 		Tablero();
 		void caminoPrincipal();
 		void rellenarTableroCompleto();
-		void mostrarTablero();
+		
+		//getter de la matriz tablero
+		const int (&getMatrizTablero() const )[FILAS][COLUMNAS]  { return matrizTablero; } //retorna la matriz del tablero
+		
+		//para la vista
+		//void mostrarTablero();
 	
 };
 	

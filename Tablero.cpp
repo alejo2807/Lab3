@@ -63,6 +63,7 @@ void Tablero::rellenarTableroCompleto()
 	//No es necesario, pues en la funcion caminoPrincipal(), ya esta por defecto esa posicion con un 1, pero es una buena práctica por si hay modificaciones en el futuro
 }
 
+/*
 void Tablero::mostrarTablero()
 {
 	cout << "Laberinto:" << endl;
@@ -71,8 +72,10 @@ void Tablero::mostrarTablero()
 	{
 		for (int j = 0; j < COLUMNAS; j++)
 		{
+			if
 			cout << matrizTablero[i][j] << " "; //Imprimimos el valor de la matriz en la posición i,j
 		}
 		cout << endl; //Salto de línea para la siguiente fila
 	}	
 }
+*/
