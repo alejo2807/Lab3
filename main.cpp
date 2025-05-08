@@ -21,7 +21,7 @@ int main()
 	Tablero tablero;  
 	tablero.caminoPrincipal(); // Definimos el camino principal del tablero
 	tablero.rellenarTableroCompleto(); // Llenamos el tablero con números aleatorios (0s y 1s)
-	tablero.mostrarTablero(); // Mostramos el tablero en pantalla
+	//tablero.mostrarTablero(); // Mostramos el tablero en pantalla
 
 	
 	
