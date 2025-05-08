@@ -62,20 +62,3 @@ void Tablero::rellenarTableroCompleto()
 	matrizTablero[9][9] = 1; //Esta linea siempre asegura que la celda de la fila 9 y columna 9 sea la salida al final del laberinto
 	//No es necesario, pues en la funcion caminoPrincipal(), ya esta por defecto esa posicion con un 1, pero es una buena práctica por si hay modificaciones en el futuro
 }
-
-/*
-void Tablero::mostrarTablero()
-{
-	cout << "Laberinto:" << endl;
-	//Imprimimos la matriz en pantalla
-	for (int i = 0; i < FILAS; i++)
-	{
-		for (int j = 0; j < COLUMNAS; j++)
-		{
-			if
-			cout << matrizTablero[i][j] << " "; //Imprimimos el valor de la matriz en la posición i,j
-		}
-		cout << endl; //Salto de línea para la siguiente fila
-	}	
-}
-*/

@@ -12,16 +12,17 @@ class Tablero {
 
 
 	public:
+		//Constructor
 		Tablero();
+		
+		//Funciones
 		void caminoPrincipal();
 		void rellenarTableroCompleto();
 		
 		//getter de la matriz tablero
 		const int (&getMatrizTablero() const )[FILAS][COLUMNAS]  { return matrizTablero; } //retorna la matriz del tablero
-		
-		//para la vista
-		//void mostrarTablero();
-	
+		int getSalidaFila() { return FILAS - 1; } //retorna la fila de la salida.
+		int getSalidaColumna() { return COLUMNAS - 1; } //retorna la columna de la salida.
 };
 	
 
