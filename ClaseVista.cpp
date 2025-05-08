@@ -27,3 +27,7 @@ void ClaseVista::mostrarJuego(const int (&matrizTablero)[FILAS][COLUMNAS], int p
 	
 	
 }
+
+void ClaseVista::mostrarMenu()
+{
+}
