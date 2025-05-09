@@ -15,7 +15,7 @@ void ClaseVista::mostrarJuego(const int (&matrizTablero)[FILAS][COLUMNAS], int p
 	{
 		for (int j = 0; j < COLUMNAS; j++)
 		{
-			if(posicionFila == i && posicionColumna == j) //Si la posición es la del jugador, imprimimos un "P" en vez de un 1 o 0
+			if(posicionFila == i && posicionColumna == j) //Si la posición es la del jugador, imprimimos una "A" en vez de un 1 o 0
 			{
 				cout << "A "; //Imprimimos el valor de la matriz en la posición i,j
 			}
@@ -28,6 +28,23 @@ void ClaseVista::mostrarJuego(const int (&matrizTablero)[FILAS][COLUMNAS], int p
 	
 }
 
-void ClaseVista::mostrarMenu()
+void ClaseVista::mostrarMenuInicio()
 {
+	cout << "🦇Bienvenido a La Ciudad De La Furia🦇"<<endl;
+	cout << "-------------------------------"<<endl;
+	cout << "Tu objetivo es salir con vida de este tenebroso laberinto...\n¿Podras conseguirlo?" <<endl;
+	cout << "-------------------------------" <<endl;
+	cout << "Menu de inicio:" << endl;
+	cout << "1. Jugar" << endl;
+	cout << "2. Salir" << endl;
+	cout << "Ingrese una opcion: ";
+}
+
+void ClaseVista::mostrarMenuMovimiento()
+{
+	cout << "Menu de movimiento:" << endl;
+	cout << "1. Arriba" << endl;
+	cout << "2. Abajo" << endl;
+	cout << "3. Izquierda" << endl;
+	cout << "4. Derecha" << endl;
 }
