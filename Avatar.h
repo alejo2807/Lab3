@@ -26,18 +26,31 @@ class Avatar {
 		Avatar(string name, Tablero& tableroReferencia, int posFila, int posColumna);
 
 		//Funciones iniciales y de verificacion
-		void iniciarPosicionRandom();
-		bool verificarPosicion(); 
+		void iniciarPosicionRandom(); //arregle esta funcion, con las respectivas verificaciones
+		bool verificarPosicion(); //
 		bool verificarSalida(); //verifica si el avatar ha encontrado la salida
+		
+		
+		//Re intentemos el metodo de movimiento, para que sea mas claro y sencillo de entender
+		
+		//Si corrijo el movimieno creo que ya lo termino
+		void moverPosicion(int& posicionActual, int cambio); //mueve el avatar a una nueva posicion
+		
+		
+		
+		
+		
 		
 		//Movimiento del avatar
 		//El parametro posicionNueva es la posicion a modificar, por eso se pasa por referencia
 		//El parametro cambio es el valor a sumar o restar a la posicion
-		void moverPosicion(int& posicionNueva, int cambio); //mueve el avatar a una nueva posicion
-		void moverArriba();
-		void moverAbajo();
-		void moverIzquierda();
-		void moverDerecha();
+		//void moverPosicion(int& posicionNueva, int cambio); //mueve el avatar a una nueva posicion
+		
+		//Se agrego verificaciones a cada movimiento, para verificar que la posicion sea valida antes de ejecutarlo
+		//void moverArriba();
+		//void moverAbajo();
+		//void moverIzquierda();
+		//void moverDerecha();
 		
 		//Getters 
 		string getName() {return this->name;}; 
@@ -46,11 +59,5 @@ class Avatar {
 
 		
 };
-
-
-
-
-
-
 
 #endif // AVATAR_H

@@ -11,8 +11,12 @@ Avatar::Avatar(string name, Tablero& tableroReferencia, int posFila, int posColu
 
 void Avatar::iniciarPosicionRandom()
 {
-	this->posFila = rand() % 10; //Fila aleatoria entre 0 y 9
-	this->posColumna = rand() % 10; //Columna aleatoria entre 0 y 9
+	posFila = rand() % 10; //Fila aleatoria entre 0 y 9
+	posColumna = rand() % 10; //Columna aleatoria entre 0 y 9
+	if (tableroReferencia.getMatrizTablero()[posFila][posColumna] == 0 || (tableroReferencia.getSalidaFila() == posFila && tableroReferencia.getSalidaColumna() == posColumna)) //verificamos que la posicion no sea un 0, y que no sea la salida
+	{
+		iniciarPosicionRandom(); //Llamamos a la funcion de nuevo para buscar otra posicion, que no sea un 0, y que no sea la salida
+	}
 }
 
 bool Avatar::verificarPosicion()
@@ -27,8 +31,7 @@ bool Avatar::verificarPosicion()
 			return true;
 		}
 	}
-	else { return false; } 
-
+	return false;
 }
 
 bool Avatar::verificarSalida()
@@ -40,6 +43,33 @@ bool Avatar::verificarSalida()
 	else{ return false; } //El avatar no ha encontrado la salida
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 void Avatar::moverPosicion(int &posicionNueva, int cambio)
 {
 	//verificar que la posicion este dentro de los limites del tablero
@@ -51,21 +81,43 @@ void Avatar::moverPosicion(int &posicionNueva, int cambio)
 
 void Avatar::moverArriba()
 {
-	moverPosicion(posFila, -1); //Se le resta 1 a la fila para mover el avatar hacia arriba
+	if(verificarPosicion()) //verificamos que la posicion sea valida
+	{
+		moverPosicion(posFila, -1); //Se le resta 1 a la fila para mover el avatar hacia arriba
+	}
+	cout << "No puedes moverte hacia arriba, hay un precipicio en esa posicion." << endl; 
+	return; //salimos de la funcion}
 }
 
 void Avatar::moverAbajo()
 {
-	moverPosicion(posFila, 1); //Se le suma 1 a la fila para mover el avatar hacia abajo
+	if(verificarPosicion()) 
+	{
+		moverPosicion(posFila, 1); //Se le suma 1 a la fila para mover el avatar hacia abajo
+	}
+	cout << "No puedes moverte hacia abajo, hay un precipicio en esa posicion." << endl; 
+	return;
 }
 
 void Avatar::moverIzquierda()
 {
-	moverPosicion(posColumna, -1); //Se le resta 1 a la columna para mover el avatar hacia la izquierda
+	if(verificarPosicion()) 
+	{
+		moverPosicion(posColumna, -1); //Se le resta 1 a la columna para mover el avatar hacia la izquierda
+	}
+	cout << "No puedes moverte hacia la izquierda, hay un precipicio en esa posicion." << endl; 
+	return;
 }
+
 
 void Avatar::moverDerecha()
 {
-	moverPosicion(posColumna, 1); //Se le suma 1 a la columna para mover el avatar hacia la derecha
+	if(verificarPosicion()) 
+	{
+		moverPosicion(posColumna, 1); //Se le suma 1 a la columna para mover el avatar hacia la derecha
+	}
+	cout << "No puedes moverte hacia la derecha, hay un precipicio en esa posicion." << endl; 
+	return;
 }
 
+*/
