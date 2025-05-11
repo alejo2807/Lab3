@@ -4,12 +4,19 @@
 // g++ main.cpp Tablero.cpp ClaseVista.cpp Controlador.cpp Avatar.cpp -o p
 int main()
 {	
-	Tablero tableroMain; //Creamos el tablero
-	Avatar avatarMain("Avatar", tableroMain, 0, 0); //Creamos el avatar
-	ClaseVista vistaMain; //Creamos la vista
+	//Creamos el tablero, el avatar y la vista
+	Tablero tableroMain; 
+	Avatar avatarMain(tableroMain, 0, 0);
+	ClaseVista vistaMain; 
 	
 	//Creamos el controlador, pasandole el tablero, el avatar y la vista
 	Controlador controlador(tableroMain, avatarMain, vistaMain); //Creamos el controlador
-	controlador.iniciarJuego(); //Iniciamos el juego
+	
+	do
+	{
+		controlador.iniciarJuego(); //Iniciamos el juego
+	}
+	while(controlador.getEstaJugando()); //Mientras el juego no haya terminado, seguimos jugando
+	
 	return 0;
 }
