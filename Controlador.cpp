@@ -1,6 +1,7 @@
 #include "Controlador.h"
+#include <cstdlib> //para usar la función srand y rand
+#include <ctime> //para usar la función time
 #include <iostream>
-#include <string>
 
 using namespace std;
 
@@ -18,7 +19,7 @@ void Controlador::iniciarJuego()
 	
 	if(opcion == 1) //Si elige jugar
 	{	
-		
+		vista.mostrarMenuReglas(); 
 		srand(time(0)); //Iniciamos la semilla para generar numeros aleatorios
 		tableroRef.caminoPrincipal(); //Llamamos a la funcion que genera el camino principal del laberinto
 		tableroRef.rellenarTableroCompleto(); //Llamamos a la funcion que rellena el tablero completo
@@ -36,14 +37,20 @@ void Controlador::iniciarJuego()
 				case 2: avatarRef.moverAbajo(); break; //Mover hacia abajo
 				case 3: avatarRef.moverIzquierda(); break; //Mover hacia la izquierda
 				case 4: avatarRef.moverDerecha(); break; //Mover hacia la derecha
+				case 5: cout << "Saliendo del juego...\nGracias por jugar" << endl; estaJugando = false; break; //Salir del juego
 				default: cout << "Opcion invalida. Intente de nuevo" << endl; break; //Si la opcion no es valida, mostramos un mensaje de error
 			}
 			
-			vista.mostrarJuego(tableroRef.getMatrizTablero(), avatarRef.getPosFila(), avatarRef.getPosColumna()); //Mostramos el tablero con la posicion del avatar
+			if(estaJugando) //Linea de prueba para ver si quita el tablero al salir
+			{
+				vista.mostrarJuego(tableroRef.getMatrizTablero(), avatarRef.getPosFila(), avatarRef.getPosColumna()); //Mostramos el tablero con la posicion del avatar
+			}
 			
 			if(avatarRef.verificarSalida()) //Verificamos si el avatar ha encontrado la salida
 			{
-				cout << "Felicidades, has encontrado la salida!" << endl; //Si el avatar ha encontrado la salida, mostramos un mensaje de felicitaciones
+				cout << "-----------------------------------------" << endl;
+				cout << "Felicidades, has encontrado la salida 🦇!" << endl; //Si el avatar ha encontrado la salida, mostramos un mensaje de felicitaciones
+				cout << "-----------------------------------------" << endl;
 				estaJugando = false; //Cambiamos la variable estaJugando a false, para salir del bucle
 			}	
 		}
@@ -51,7 +58,8 @@ void Controlador::iniciarJuego()
 	
 	else if(opcion == 2) //Si elige salir
 	{
-		cout << "Adios!" << endl; 
+		cout << "Hasta pronto :)!" << endl; 
+		estaJugando = false; //Cambiamos la variable estaJugando a false, para salir del bucle
 	}
 	
 	else 
@@ -61,7 +69,7 @@ void Controlador::iniciarJuego()
 	
 }
 
-//notas adicionales sobre la semilla de numeros aleatorios:
+//Notas adicionales sobre la semilla de numeros aleatorios:
 //Una semilla es un número que se utiliza para inicializar un generador de números aleatorios.
 //La función srand() se utiliza para establecer la semilla del generador de números aleatorios.
 //La funcion srand() genera una secuencia de números pseudoaleatorios.
