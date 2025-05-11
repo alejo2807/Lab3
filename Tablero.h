@@ -1,3 +1,36 @@
+/*
+	Clase: Tablero
+	Curso: Fundamentos de Programación Orientada a Objetos (FPOO)
+	Universidad del Valle
+	
+	Información CRC:
+	Clase: Tablero
+	
+	Responsabilidades:
+	
+		- Representar el laberinto del juego como una matriz bidimensional.
+		- Generar un camino principal y rellenar el tablero con caminos y
+		obstáculos.
+		- Proveer funciones para consultar la estructura del laberinto y la
+		posición de salida.
+		
+	Colaboradores:
+	
+		- Colabora con la clase Avatar, que consulta la matriz del tablero para
+		validar movimientos.
+		- Colabora con la clase Controlador, que invoca los métodos de
+		generación de caminos.
+
+	Autores: Juan Jose Atuesta, David Alejandro Garcia, Sergio Garcia Ramos, Paula Mariana Murillo
+	Correos Autores: atuesta.juan@correounivalle.edu.co
+	- david.grueso@correounivalle.edu.co
+	- sergio.garcia.ramos@correounivalle.edu.co
+	- murillo.paula@correounivalle.edu.co
+	
+	Fecha: Mayo 2025
+
+*/
+
 #ifndef TABLERO_H
 #define TABLERO_H
 

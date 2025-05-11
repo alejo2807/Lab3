@@ -1,3 +1,33 @@
+/*
+	Clase: Avatar
+	Curso: Fundamentos de Programación Orientada a Objetos (FPOO)
+	Universidad del Valle
+	
+	Información CRC:
+	Clase: Avatar
+	
+	Responsabilidades:
+	
+		- Representar un avatar dentro de un tablero de juego.
+		- Controlar la posición del avatar y permitir movimientos válidos dentro
+		del tablero.
+		- Verificar si la posición actual es válida o corresponde a la salida.
+		- Inicializar la posición del avatar aleatoriamente evitando obstáculos.
+		
+	Colaboradores:
+	
+		- Colabora directamente con la clase Tablero, ya que utiliza sus
+		métodos para validar posiciones y acceder a la estructura del tablero.
+
+	Autores: Juan Jose Atuesta, David Alejandro Garcia, Sergio Garcia Ramos, Paula Mariana Murillo
+	Correos Autores: atuesta.juan@correounivalle.edu.co
+	- david.grueso@correounivalle.edu.co
+	- sergio.garcia.ramos@correounivalle.edu.co
+	- murillo.paula@correounivalle.edu.co
+	
+	Fecha: Mayo 2025
+*/
+
 #ifndef AVATAR_H
 #define AVATAR_H
 #include "Tablero.h"
