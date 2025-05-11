@@ -1,12 +1,31 @@
 #include "Avatar.h"
 #include <iostream>
-#include <cstdlib>
-#include <string>
 
 using namespace std;
 
 
-Avatar::Avatar(string name, Tablero& tableroReferencia, int posFila, int posColumna) : name(name), tableroReferencia(tableroReferencia), posFila(0), posColumna(0) {}
+//Parte Privada
+bool Avatar::mover(int &fila, int &columna, int cambioFila, int cambioColumna)
+{
+	int nuevaFila = fila + cambioFila; //Calculamos la nueva fila
+	int nuevaColumna = columna + cambioColumna; //Calculamos la nueva columna
+	
+	//minimo y maximo son los limites del tablero, las constantes que definimos en la clase Avatar
+	if((nuevaFila>=minimo && nuevaFila<maximo && nuevaColumna>=minimo && nuevaColumna<maximo) && (tableroReferencia.getMatrizTablero()[nuevaFila][nuevaColumna] == 1))
+	{
+		fila = nuevaFila; //Movemos el avatar a la nueva fila
+		columna = nuevaColumna; //Movemos el avatar a la nueva columna
+		return true; //Retornamos true si el movimiento fue exitoso
+	}
+	else
+	{
+		return false; //Retornamos false si el movimiento no fue exitoso
+	}
+}
+
+
+//Parte Publica
+Avatar::Avatar(Tablero &tableroReferencia, int posFila, int posColumna) : tableroReferencia(tableroReferencia), posFila(0), posColumna(0) {}
 
 
 void Avatar::iniciarPosicionRandom()
@@ -22,7 +41,6 @@ void Avatar::iniciarPosicionRandom()
 bool Avatar::verificarPosicion()
 {	
 	//verificar que la posicion este dentro de los limites del tablero
-	//minimo y maximo son los limites del tablero, las constantes que definimos en la clase Avatar
 	if ((posFila >= minimo && posFila < maximo) && (posColumna >= minimo && posColumna < maximo)) 
 	{
 		//verificar que la posicion sea un 1 en el tablero.
@@ -43,81 +61,40 @@ bool Avatar::verificarSalida()
 	else{ return false; } //El avatar no ha encontrado la salida
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-void Avatar::moverPosicion(int &posicionNueva, int cambio)
-{
-	//verificar que la posicion este dentro de los limites del tablero
-	if((posicionNueva + cambio >= minimo) && (posicionNueva + cambio < maximo)) //verificamos que la nueva posicion este dentro de los limites del tablero
-	{
-		posicionNueva += cambio; //movemos el avatar a la nueva posicion
-	}	
-}
-
 void Avatar::moverArriba()
 {
-	if(verificarPosicion()) //verificamos que la posicion sea valida
+	if(mover(posFila, posColumna, -1, 0))
 	{
-		moverPosicion(posFila, -1); //Se le resta 1 a la fila para mover el avatar hacia arriba
-	}
-	cout << "No puedes moverte hacia arriba, hay un precipicio en esa posicion." << endl; 
-	return; //salimos de la funcion}
+		cout << "Te has movido hacia arriba." << endl; 
+	} 
+	else cout << "No puedes moverte hacia arriba, hay un precipicio en esa posicion." << endl; 
+	
 }
 
 void Avatar::moverAbajo()
 {
-	if(verificarPosicion()) 
+	if(mover(posFila, posColumna, 1, 0))
 	{
-		moverPosicion(posFila, 1); //Se le suma 1 a la fila para mover el avatar hacia abajo
-	}
-	cout << "No puedes moverte hacia abajo, hay un precipicio en esa posicion." << endl; 
-	return;
+		cout << "Te has movido hacia abajo." << endl; 
+	} 
+	else cout << "No puedes moverte hacia abajo, hay un precipicio en esa posicion." << endl; 
 }
 
 void Avatar::moverIzquierda()
 {
-	if(verificarPosicion()) 
+	if(mover(posFila, posColumna, 0, -1))
 	{
-		moverPosicion(posColumna, -1); //Se le resta 1 a la columna para mover el avatar hacia la izquierda
-	}
-	cout << "No puedes moverte hacia la izquierda, hay un precipicio en esa posicion." << endl; 
-	return;
-}
+		cout << "Te has movido hacia la izquierda." << endl; 
+	} 
+	else cout << "No puedes moverte hacia la izquierda, hay un precipicio en esa posicion." << endl; 
 
+}
 
 void Avatar::moverDerecha()
 {
-	if(verificarPosicion()) 
+	if(mover(posFila, posColumna, 0, 1))
 	{
-		moverPosicion(posColumna, 1); //Se le suma 1 a la columna para mover el avatar hacia la derecha
-	}
-	cout << "No puedes moverte hacia la derecha, hay un precipicio en esa posicion." << endl; 
-	return;
+		cout << "Te has movido hacia la derecha." << endl; 
+	} 
+	else cout << "No puedes moverte hacia la derecha, hay un precipicio en esa posicion." << endl; 
 }
-
-*/
