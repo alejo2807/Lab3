@@ -1,7 +1,8 @@
 #include "Tablero.h"
 #include <iostream>
 #include <ctime> //para usar la función time
-#include <cstdlib> //para usar la función rand y srand
+#include <cstdlib> //para usar la función rand 
+
 using namespace std;
 
 Tablero::Tablero()
